@@ -26,7 +26,7 @@ class GenreSeeder extends Seeder
         $genre2 = new Genre();
         $genre2->name = 'No Ficción';
         $genre2->description = 'La no ficción es la exposición de la realidad con el objetivo de divulgar, informar o educar sobre un tema concreto.';
-
+        $genre2->save();
 
     }
 }

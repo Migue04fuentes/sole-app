@@ -12,6 +12,7 @@ use App\Models\Image;
 use App\Models\Note;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Genre;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         //Seeders
         $this->call(GenreSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(PublisherSeeder::class);
 
         //Factories
         Storage::deleteDirectory('public/images');
@@ -45,7 +47,7 @@ class DatabaseSeeder extends Seeder
         Note::factory(10)->create();
         User::factory()->hasAttached(Author::factory()->count(2),['number_star' => rand(1,5)])->create();
         User::factory()->hasAttached(Book::factory()->count(2),['number_star' => rand(1,5)])->create();
-
+        Genre::factory(5)->create();
     }
 
 }
