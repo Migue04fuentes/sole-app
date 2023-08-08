@@ -3,9 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NoteAuthorController;
+use App\Http\Controllers\NoteBookController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\RatingAuthorController;
+use App\Http\Controllers\RatingBookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +57,41 @@ Route::controller(RatingAuthorController::class)->group(function(){
     Route::post('/authors/ratings','store');
     Route::get('/authors/{id}/ratings','show');
     Route::put('/authors/ratings/{id}','update');
+});
+
+Route::controller(GenreController::class)->group(function(){
+    Route::get('/genres','index');
+    Route::post('/genres','store');
+    Route::get('/genres/{id}','show');
+    Route::put('/genres/{id}','update');
+    Route::delete('/genres/{id}','destroy');
+});
+
+Route::controller(PublisherController::class)->group(function(){
+    Route::get('/publisher','index');
+    Route::post('/publisher','store');
+    Route::get('/publisher/{id}','show');
+    Route::put('/publisher/{id}','update');
+    Route::delete('publisher/{id}','destroy');
+});
+
+Route::controller(BookController::class)->group(function(){
+    Route::get('/book','index');
+    Route::post('/book','store');
+    Route::get('/book/{id}','show');
+    Route::put('/book/{id}','update');
+    Route::delete('/book/{id}','destroy');
+});
+
+Route::controller(NoteBookController::class)->group(function(){
+    Route::get('/book/{id}/notes','index');
+    Route::post('/book/notes','store');
+    Route::put('/book/notes/{id}','update');
+    Route::delete('/book/notes/{id}','destroy');
+});
+
+Route::controller(RatingBookController::class)->group(function(){
+    Route::post('/books/ratings','store');
+    Route::get('/books/{id}/ratings','show');
+    Route::put('/books/ratings/{id}','update');
 });

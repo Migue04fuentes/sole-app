@@ -29,7 +29,7 @@ class RatingAuthorController extends Controller
         try{
             $author = Author::findOrFail($request->author['id']);
             $author->users()->attach($request->user['id'],['number_star'=>$request->number_star]);
-            return response()->json(['status'=>true,'message'=>'La puntuación del autro '.$author->full_name.' fue creado exitosamente']);
+            return response()->json(['status'=>true,'message'=>'La puntuación del autor '.$author->full_name.' fue creado exitosamente']);
         } catch (\Exception $exc){
             return response()->json(['status'=>false,'message'=>'Error al crear el registro: '.$exc]);
         }
@@ -52,7 +52,7 @@ class RatingAuthorController extends Controller
         $validated = $request->validate([
             'number_star'=>'required|integer',
             'author.id'=>'required|integer|exists:authors,id',
-            'user.id'=>'required|required|exists:users,id',
+            'user.id'=>'required|integer|exists:users,id',
         ]);
 
         try{
